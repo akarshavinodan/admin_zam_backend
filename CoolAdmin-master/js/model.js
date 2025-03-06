@@ -142,3 +142,51 @@ $('#addProjectModal').on('hidden.bs.modal', function () {
     document.getElementById('projectForm').reset();
     document.getElementById('imagePreview').style.display = 'none';
 });
+
+// ---------------------------===============b2b service=======================--------------------------------------------
+
+// Initialize tooltips
+$(document).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip();
+});
+
+// Image preview functionality
+document.getElementById('image').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    const preview = document.getElementById('imagePreview');
+    
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            preview.src = e.target.result;
+            preview.style.display = 'block';
+        }
+        reader.readAsDataURL(file);
+    }
+});
+
+// Form submission
+function submitB2bServiceForm() {
+    const name = document.getElementById('name').value;
+    const description = document.getElementById('description').value;
+    const image = document.getElementById('image').files[0];
+
+    if (!name || !description || !image) {
+        alert('Please fill all fields');
+        return;
+    }
+
+    // Here you can add your API call to save the data
+    console.log('Form submitted:', { name, description, image });
+    
+    // Close modal and reset form
+    $('#addB2bServiceModal').modal('hide');
+    document.getElementById('b2bServiceForm').reset();
+    document.getElementById('imagePreview').style.display = 'none';
+}
+
+// Reset form when modal is closed
+$('#addB2bServiceModal').on('hidden.bs.modal', function () {
+    document.getElementById('b2bServiceForm').reset();
+    document.getElementById('imagePreview').style.display = 'none';
+});
