@@ -190,3 +190,44 @@ $('#addB2bServiceModal').on('hidden.bs.modal', function () {
     document.getElementById('b2bServiceForm').reset();
     document.getElementById('imagePreview').style.display = 'none';
 });
+
+// ---------------------------===============blog=======================--------------------------------------------
+
+// Initialize tooltips
+$(document).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip();
+
+    // Set default date to today
+    document.getElementById('date').valueAsDate = new Date();
+});
+
+// Form submission
+function submitBlogForm() {
+    const date = document.getElementById('date').value;
+    const type = document.getElementById('type').value;
+    const description = document.getElementById('description').value;
+    const status = document.getElementById('status').value;
+    const price = document.getElementById('price').value;
+
+    if (!date || !type || !description || !status || !price) {
+        alert('Please fill all fields');
+        return;
+    }
+
+    // Here you can add your API call to save the data
+    console.log('Form submitted:', { date, type, description, status, price });
+    
+    // Close modal and reset form
+    $('#addBlogModal').modal('hide');
+    document.getElementById('blogForm').reset();
+    
+    // Reset date to today
+    document.getElementById('date').valueAsDate = new Date();
+}
+
+// Reset form when modal is closed
+$('#addBlogModal').on('hidden.bs.modal', function () {
+    document.getElementById('blogForm').reset();
+    // Reset date to today
+    document.getElementById('date').valueAsDate = new Date();
+});
